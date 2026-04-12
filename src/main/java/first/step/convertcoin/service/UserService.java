@@ -14,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 @Service
-@Validated
 public class UserService {
 
     private final UserRepository userRepository;
@@ -40,12 +39,12 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
     }
 
-    public UserResponseDto createUser(@Valid UserRequestDto userDto) {
+    public UserResponseDto createUser(UserRequestDto userDto) {
         UserEntity user = userRepository.save(UserMapper.userRequestDtoToUserEntity(userDto));
         return UserMapper.userEntityToResponseDTO(user);
     }
 
-    public UserResponseDto updateUser(@Valid UserRequestDto requestDto, Long id) {
+    public UserResponseDto updateUser(UserRequestDto requestDto, Long id) {
         return userRepository.findById(id)
                 .map(user -> {
                         user.setEmail(requestDto.email());
