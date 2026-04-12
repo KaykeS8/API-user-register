@@ -47,9 +47,10 @@ public class UserService {
 
     public UserResponseDto updateUser(@Valid UserRequestDto requestDto, Long id) {
         return userRepository.findById(id)
-                .map(userEntity1 -> {
-                        BeanUtils.copyProperties(requestDto, userEntity1);
-                       return UserMapper.userEntityToResponseDTO(userRepository.save(userEntity1));
+                .map(user -> {
+                        user.setEmail(requestDto.email());
+                        user.setName(requestDto.name());
+                       return UserMapper.userEntityToResponseDTO(userRepository.save(user));
                 })
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " does not exist"));
     }
