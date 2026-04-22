@@ -22,7 +22,7 @@ public class CurrencyController {
     }
 
     @GetMapping
-    public List<Map<String, Double>> getAll() {
+    public List<CurrencyResponseDto> getAll() {
         return currencyService.getAllCurrency();
     }
 
