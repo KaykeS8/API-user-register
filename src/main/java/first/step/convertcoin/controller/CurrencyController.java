@@ -17,7 +17,7 @@ public class CurrencyController {
 
     private final CurrencyService currencyService;
 
-    public CurrencyController(CurrencyService currencyService, CurrencyMockData currencyMockData) {
+    public CurrencyController(CurrencyService currencyService) {
         this.currencyService = currencyService;
     }
 
